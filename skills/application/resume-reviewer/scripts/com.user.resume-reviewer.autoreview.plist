@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.user.resume-reviewer.autoreview</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/<you>/.claude/skills/resume-reviewer/scripts/auto_review.sh</string>
+  </array>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>RESUME_WATCH_ROOT</key>
+    <string>/Users/<you>/Documents/resumes</string>
+    <key>CLAUDE_BIN</key>
+    <string>claude</string>
+    <!-- Set to 1 for true hands-off runs (passes --dangerously-skip-permissions). -->
+    <key>RESUME_AUTOREVIEW_YOLO</key>
+    <string>0</string>
+  </dict>
+
+  <!-- Fire when files in the watch root change... -->
+  <key>WatchPaths</key>
+  <array>
+    <string>/Users/<you>/Documents/resumes</string>
+  </array>
+  <!-- ...and poll every 15 min as a reliable backstop (WatchPaths misses some nested edits). -->
+  <key>StartInterval</key>
+  <integer>900</integer>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/<you>/.claude/skills/resume-reviewer/auto_review.launchd.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/<you>/.claude/skills/resume-reviewer/auto_review.launchd.log</string>
+</dict>
+</plist>
